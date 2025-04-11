@@ -1,7 +1,12 @@
-import Message from './Message';
+import ListGroup from "./components/ListGroup"
 
 function App() {
-  return <div><Message></Message></div>
+  return (
+    <div>
+      <button className="register-login">Register/Login</button>
+      <button className="leaderboard">Leaderboard</button>
+    </div>
+  );
 }
 
 export default App;
