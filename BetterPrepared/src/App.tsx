@@ -24,13 +24,8 @@ function App() {
       {location.pathname === "/" && (
         <div className="button-container">
           <button className="leaderboard">Leaderboard</button>
-          <button className="register-login">
-            <Link
-              to="/login"
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              Login
-            </Link>
+          <button className="register-login" onClick={() => window.location.href = "/login"}>
+            Login
           </button>
         </div>
       )}
