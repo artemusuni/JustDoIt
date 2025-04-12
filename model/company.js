@@ -11,7 +11,8 @@ const companySchema = new Schema({
 
     myEmployees: [String],
     questions: [String],
-    answers: [String]
+    answers: [[String]],
+    correctAnswer: [Numbers]
 });
 
 const company = model ("Company", companySchema);
