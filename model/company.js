@@ -2,10 +2,14 @@ import mongoose from "mongoose";
 const {Schema, model} = mongoose;
 
 const companySchema = new Schema({
-    company: String,
+    companyName: String,
     companyRating: Number,
 
-    employees: [String],
+    email: String,
+    user: String,
+    password: String,
+
+    myEmployees: [String],
     questions: [String],
     answers: [String]
 });
