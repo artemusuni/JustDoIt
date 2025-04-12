@@ -12,6 +12,7 @@ function App() {
     <div className="welcome-page">
       {/* Welcome Section with Images */}
       {location.pathname === "/" && (
+<<<<<<< HEAD
         <div className="welcome-container">
           <img src="/public/shield.png" alt="Shield Icon" className="picture" />
           <div className="welcome-message">
@@ -39,6 +40,13 @@ function App() {
             </p>
           </div>
           <img src="/public/shield.png" alt="Shield Icon" className="picture" />
+=======
+        <div className="welcome-message">
+          <h1>Welcome to BetterPrepared!</h1>
+          <p>
+            Empowering Smarter Security Choices
+          </p>
+>>>>>>> fb5cfcd85cccaa506b273c834f8df2a06522d7da
         </div>
       )}
 

@@ -1,13 +1,26 @@
 import React, { useState } from "react";
+import axios from "axios"
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add logic to handle login (e.g., API call)
-    alert(`Logged in as ${username}`);
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
+        email: username,
+        password,
+      });
+      alert(response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        setErrorMessage(error.response.data?.message || "Login failed");
+      } else {
+        setErrorMessage("An unexpected error occurred. Please try again.");
+      }
+    }
   };
 
   return (

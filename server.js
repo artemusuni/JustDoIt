@@ -1,3 +1,5 @@
+import Employee from "./model/employee.js";
+
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -28,3 +30,41 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`);
 });
+
+//Login Route
+app.post("/api/auth/login", async (req, res) => {
+    const { email, password} = req.body;
+    try {
+        if (user) {
+            res.status(200).json({ message: "Login successful", user });
+        } else {
+            res.status(401).json({ message: "Invalid credentials"});
+        }
+
+
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+
+});
+
+//Registration Route
+app.post("/api/auth/register", async (req, res) => {
+    const { CompanyName, employeeName, email, password} = req.body;
+    try {
+       const newEmployee = new Employee({
+            companyName,
+            employeeName,
+            email,
+            password,
+            employeeRating: 0,
+            questions: [],
+            answers: [],
+        });
+       await newEmployee.save();
+       res.status(201).json({ message: ""});
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+});
+

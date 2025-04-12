@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -6,6 +8,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const validatePassword = (password: string) => {
     const hasLength = password.length > 8;
@@ -15,7 +18,7 @@ function Register() {
     return hasLength && hasNumber && hasLetter && hasSymbol;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validatePassword(password)) {
       setErrorMessage(
@@ -29,7 +32,24 @@ function Register() {
     }
     setErrorMessage("");
     alert(`Registration successful for ${username}`);
-    // Add logic to handle registration (e.g., API call)
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/register", {
+        username,
+        email,
+        password,
+      });
+      setSuccessMessage(response.data.message);
+      setErrorMessage("");
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        setErrorMessage(error.response.data?.message || "Registration failed");
+      } else {
+        setErrorMessage("An unexpected error occurred. Please try again.");
+      }
+    }
+
+
   };
 
   return (
@@ -98,6 +118,9 @@ function Register() {
                 </div>
                 {errorMessage && (
                   <div className="alert alert-danger">{errorMessage}</div>
+                )}
+                {successMessage && (
+                <div className="alert alert-success">{successMessage}</div>
                 )}
                 <button type="submit" className="btn btn-primary w-100">
                   Register
