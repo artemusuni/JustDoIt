@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Login from "./External/Login";
 import "./App.css";
@@ -22,14 +23,11 @@ function App() {
       {location.pathname === "/" && (
         <div className="button-container">
           <button className="leaderboard">Leaderboard</button>
-          <button className="register-login">
-            <Link
-              to="/login"
-              style={{ color: "white", textDecoration: "none" }}
-            >
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <button className="register-login">
               Login
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       )}
 
