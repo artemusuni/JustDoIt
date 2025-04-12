@@ -5,6 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import crypto from "crypto"; // Added for password hashing
 
 dotenv.config();
 
@@ -14,6 +15,22 @@ const PORT = process.env.PORT || 5000; //default port will be 5000
 
 app.use(cors());
 app.use(bodyParser.json());
+
+// Function to hash passwords
+const hashPassword = (password) => {
+  // Create a random salt
+  const salt = crypto.randomBytes(16).toString('hex');
+  // Create hash
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  // Return salt and hash
+  return { salt, hash };
+};
+
+// Function to verify password
+const verifyPassword = (password, salt, storedHash) => {
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  return hash === storedHash;
+};
 
 //Connect to MongoDB
 mongoose
@@ -35,8 +52,21 @@ app.listen(PORT, () => {
 app.post("/api/auth/login", async (req, res) => {
     const { email, password} = req.body;
     try {
+        // Find user by email
+        const user = await Employee.findOne({ email });
+        
         if (user) {
-            res.status(200).json({ message: "Login successful", user });
+            // If user has salt and passwordHash, verify password using hash
+            if (user.salt && user.passwordHash) {
+                if (verifyPassword(password, user.salt, user.passwordHash)) {
+                    res.status(200).json({ message: "Login successful", user });
+                } else {
+                    res.status(401).json({ message: "Invalid credentials"});
+                }
+            } else {
+                // Keeping original logic
+                res.status(200).json({ message: "Login successful", user });
+            }
         } else {
             res.status(401).json({ message: "Invalid credentials"});
         }
@@ -52,11 +82,16 @@ app.post("/api/auth/login", async (req, res) => {
 app.post("/api/auth/register", async (req, res) => {
     const { CompanyName, employeeName, email, password} = req.body;
     try {
+       // Hash the password
+       const { salt, hash } = hashPassword(password);
+       
        const newEmployee = new Employee({
-            companyName,
+            companyName: CompanyName, // Fixed capitalization
             employeeName,
             email,
-            password,
+            // Store salt and hash instead of plaintext password
+            salt,
+            passwordHash: hash,
             employeeRating: 0,
             questions: [],
             answers: [],
@@ -67,4 +102,3 @@ app.post("/api/auth/register", async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 });
-
