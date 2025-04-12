@@ -13,7 +13,7 @@ const employeeSchema = new Schema({
 
     questions: [String],
     answers: [[String]],
-    correctAnswers: [Numbers]
+    correctAnswers: [Number]
 });
 
 const employee = model ("Employee", employeeSchema);

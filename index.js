@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import Company from "./model/company.js";
 import Employee from "./model/employee.js";
 
-mongoose.connect("mongodb+srv://kevinb71205:ur85xvDzeixc1CWs@betterprepared.px7purl.mongodb.net/BetterPreparedData?retryWrites=true&w=majority&appName=BetterPrepared");
+mongoose.connect("mongodb+srv://User:HJ5QsPcSYOd2btea@betterprepared.px7purl.mongodb.net/BetterPreparedData?retryWrites=true&w=majority&appName=BetterPrepared");
 
 const employeeA = new Employee ({
     companyName: "No name", //On creation needs to be none need to set when added to a company
@@ -25,8 +25,22 @@ const myCompany = new Company ({
     correctAnswer: [2, 1, 3]
 });
 
-await employeeA.save();
-await myCompany.save();
+var aperson = Employee.findOne(Employee.employeeName== employeeA.employeeName);
+if (aperson != null){
+    await Employee.deleteOne(aperson)
+    await employeeA.save();
+}
+else {
+    await employeeA.save();
+}
+var acompany = Company.findOne(Company.companyName == myCompany.companyName);
+if (acompany != null){
+    await Company.deleteOne(acompany)
+    await myCompany.save()
+}
+else {
+    await myCompany.save()
+}
 
 const testCompany = await Company.findOne({});
 console.log(testCompany);
