@@ -1,23 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Add logic to handle login (e.g., API call)
+    alert(`Logged in as ${username}`);
+  };
+
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-10">
           <div className="card">
             <div className="card-body">
               <h2 className="text-center mb-4">Login</h2>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email address
+                  <label htmlFor="username" className="form-label">
+                    Username
                   </label>
                   <input
-                    type="email"
+                    type="text"
                     className="form-control"
-                    id="email"
-                    placeholder="Enter your email"
+                    id="username"
+                    placeholder="Enter your username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -29,10 +41,20 @@ function Login() {
                     className="form-control"
                     id="password"
                     placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
-                <button type="submit" className="btn btn-primary w-100">
+                <button type="submit" className="btn btn-primary w-100 mb-3">
                   Login
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary w-100"
+                  onClick={() => (window.location.href = "/register")}
+                >
+                  No Account? Click Here to Register!
                 </button>
               </form>
             </div>

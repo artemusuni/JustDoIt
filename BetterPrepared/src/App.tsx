@@ -1,5 +1,6 @@
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Login from "./External/Login";
+import Register from "./External/Register";
 import "./App.css";
 
 function App() {
@@ -22,21 +23,16 @@ function App() {
       {location.pathname === "/" && (
         <div className="button-container">
           <button className="leaderboard">Leaderboard</button>
-          <button className="register-login">
-            <Link
-              to="/login"
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              Login
-            </Link>
-          </button>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <button className="register-login">Login</button>
+          </Link>
         </div>
       )}
 
-      {/* Routes */}
       <Routes>
         <Route path="/" element={<div />} /> {/* Empty main page */}
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
