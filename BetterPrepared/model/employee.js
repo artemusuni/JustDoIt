@@ -11,3 +11,4 @@ const employeeSchema = new Schema({
 });
 
 const employee = model ("Empoyee", employeeSchema);
+export default employee;

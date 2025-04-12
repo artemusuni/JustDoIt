@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import company from "/model/company";
-import employee from "/model/employee";
+import company from "/model/company.js";
+import employee from "/model/employee.js";
 
-mongoose.connect("mongodb+srv://kevinb71205:<db_password>@betterprepared.px7purl.mongodb.net/");
+mongoose.connect("mongodb+srv://kevinb71205:<ur85xvDzeixc1CWs>@betterprepared.px7purl.mongodb.net/");
 
 const employeeA = new employee ({
     company: "None", //On creation needs to be none need to set when added to a company
@@ -22,3 +22,9 @@ const myCompany = new company ({
     questions: ["Question A", "Question B", "Question C"],
     answers: ["Asnwer A", "Answer B", "Answer C"]
 });
+
+await employeeA.save();
+await myCompany.save();
+
+const testCompany = await company.findOne({});
+console.log(testCompany);

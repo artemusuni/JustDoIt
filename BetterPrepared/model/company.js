@@ -5,8 +5,10 @@ const companySchema = new Schema({
     company: String,
     companyRating: Double,
 
+    empolyees: [String],
     questions: [String],
     answers: [String]
 });
 
 const company = model ("Company", companySchema);
+export default company;
