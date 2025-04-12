@@ -3,7 +3,7 @@ const {Schema, model} = mongoose;
 
 const companySchema = new Schema({
     company: String,
-    companyRating: Double,
+    companyRating: Number,
 
     empolyees: [String],
     questions: [String],

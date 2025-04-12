@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import company from "/model/company.js";
-import employee from "/model/employee.js";
+import company from "./model/company.js";
+import employee from "./model/employee.js";
 
 mongoose.connect("mongodb+srv://kevinb71205:<ur85xvDzeixc1CWs>@betterprepared.px7purl.mongodb.net/");
 
@@ -10,8 +10,8 @@ const employeeA = new employee ({
     employee: "Kevin Barry",
     employeeRating: 3.8,
 
-    questions: [],
-    answers: []
+    questions: ["a"],
+    answers: ["b"]
 });
 
 const myCompany = new company ({
