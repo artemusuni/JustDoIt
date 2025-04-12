@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from "react";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+import Login from "./External/Login";
+import Register from "./External/Register";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const location = useLocation(); // Get the current route
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="welcome-page">
+      {/* Welcome Message */}
+      {location.pathname === "/" && (
+        <div className="welcome-message">
+          <h1>Welcome to BetterPrepared!</h1>
+          <p>
+            Your one-stop solution for staying organized and achieving your
+            goals.
+          </p>
+        </div>
+      )}
+
+      {/* Buttons only visible on the main page */}
+      {location.pathname === "/" && (
+        <div className="button-container">
+          <button className="leaderboard">Leaderboard</button>
+          <button className="register-login">
+            <Link
+              to="/login"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Login
+            </Link>
+          </button>
+        </div>
+      )}
+
+      <Routes>
+        <Route path="/" element={<div />} /> {/* Empty main page */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
