@@ -11,7 +11,8 @@ const employeeA = new Employee ({
     employeeRating: 3.8,
 
     questions: ["a"],
-    answers: ["b"]
+    answers: [["b"]],
+    correctAnswer: [1]
 });
 
 const myCompany = new Company ({
@@ -20,7 +21,8 @@ const myCompany = new Company ({
 
     myEmployees: ["Kevin Barry", "Artem Pugach", "Niko"],
     questions: ["Question A", "Question B", "Question C"],
-    answers: ["Asnwer A", "Answer B", "Answer C"]
+    answers: [["Asnwer A", "Answer B", "Answer C"],["Asnwer A", "Answer B", "Answer C"], ["Asnwer A", "Answer B", "Answer C"]],
+    correctAnswer: [2, 1, 3]
 });
 
 await employeeA.save();

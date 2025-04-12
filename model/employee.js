@@ -12,7 +12,8 @@ const employeeSchema = new Schema({
     password: String,
 
     questions: [String],
-    answers: [String]
+    answers: [[String]],
+    correctAnswers: [Numbers]
 });
 
 const employee = model ("Employee", employeeSchema);
