@@ -25,7 +25,7 @@ function App() {
         <div className="button-container">
           <button className="leaderboard">Leaderboard</button>
           <button className="register-login" onClick={() => window.location.href = "/login"}>
-            Login
+            Login/Register
           </button>
         </div>
       )}
