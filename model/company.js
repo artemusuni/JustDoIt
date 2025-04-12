@@ -5,7 +5,7 @@ const companySchema = new Schema({
     company: String,
     companyRating: Number,
 
-    empolyees: [String],
+    employees: [String],
     questions: [String],
     answers: [String]
 });
