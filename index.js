@@ -25,21 +25,22 @@ const myCompany = new Company ({
     correctAnswer: [2, 1, 3]
 });
 
-
-// if (Employee.findOne(Employee.employeeName == employeeA.employeeName) != null){
-//     await Employee.deleteOne(Employee.employeeName == employeeA.employeeName)
-//     await employeeA.save();
-// }
-// else {
-//     await employeeA.save();
-// }
-// if (Company.findOne(Company.companyName == myCompany.companyName) != null){
-//     await Company.deleteOne(Company.companyName == myCompany.companyName)
-//     await myCompany.save()
-// }
-// else {
-//     await myCompany.save()
-// }
+var aperson = Employee.findOne(Employee.employeeName== employeeA.employeeName);
+if (aperson != null){
+    await Employee.deleteOne(aperson)
+    await employeeA.save();
+}
+else {
+    await employeeA.save();
+}
+var acompany = Company.findOne(Company.companyName == myCompany.companyName);
+if (acompany != null){
+    await Company.deleteOne(acompany)
+    await myCompany.save()
+}
+else {
+    await myCompany.save()
+}
 
 const testCompany = await Company.findOne({});
 console.log(testCompany);
