@@ -18,17 +18,20 @@ function App() {
         </div>
       )}
 
-      {/* Conditionally render the Leaderboard button */}
-      {location.pathname !== "/login" && (
-        <button className="leaderboard">Leaderboard</button>
+      {/* Buttons only visible on the main page */}
+      {location.pathname === "/" && (
+        <div className="button-container">
+          <button className="leaderboard">Leaderboard</button>
+          <button className="register-login">
+            <Link
+              to="/login"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Login
+            </Link>
+          </button>
+        </div>
       )}
-
-      {/* Login Button */}
-      <button className="register-login">
-        <Link to="/login" style={{ color: "white", textDecoration: "none" }}>
-          Login
-        </Link>
-      </button>
 
       {/* Routes */}
       <Routes>
