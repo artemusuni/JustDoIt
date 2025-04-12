@@ -2,7 +2,16 @@ import mongoose from "mongoose";
 import Company from "./model/company.js";
 import Employee from "./model/employee.js";
 
-mongoose.connect("mongodb+srv://User:HJ5QsPcSYOd2btea@betterprepared.px7purl.mongodb.net/BetterPreparedData?retryWrites=true&w=majority&appName=BetterPrepared");
+// Use environment variable for MongoDB connection string
+const mongoURI = process.env.MONGO_URI;
+
+// Check if the environment variable is set
+if (!mongoURI) {
+  console.error('MongoDB connection string not found. Please set the MONGO_URI environment variable.');
+  process.exit(1); // Exit with error
+}
+
+mongoose.connect(mongoURI);
 
 const employeeA = new Employee ({
     companyName: "No name", //On creation needs to be none need to set when added to a company
