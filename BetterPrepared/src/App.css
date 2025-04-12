@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 .register-login:hover {
-    background-color: #0056b3;
+    background-color: #E65C5C;
 }
 
 
@@ -20,7 +20,7 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -28,5 +28,18 @@
 }
 
 .leaderboard:hover {
-    background-color: #218838;
+    background-color: #E65C5C;
+}
+
+.welcome-page {
+    background-color: #FFFAF0;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    /*center the text*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
