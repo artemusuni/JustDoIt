@@ -14,8 +14,7 @@ function App() {
         <div className="welcome-message">
           <h1>Welcome to BetterPrepared!</h1>
           <p>
-            Your one-stop solution for staying organized and achieving your
-            goals.
+            Empowering Smarter Security Choices
           </p>
         </div>
       )}
