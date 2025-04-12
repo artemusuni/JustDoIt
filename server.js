@@ -15,12 +15,12 @@ app.use(bodyParser.json());
 
 //Connect to MongoDB
 mongoose
-    .conncect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+    .connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log("Connected to The MongoDB"))
     .catch((err) => console.error("MongoDB connection error:", err));
 
 //Test Route
-app.get("/", () => {
+app.get("/", (req, res) => {
     res.send("API is running");
 });
 
