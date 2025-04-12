@@ -14,7 +14,7 @@ const employeeA = new Employee ({
     answers: ["b"]
 });
 
-const myCompany = await Company.create ({
+const myCompany = new Company ({
     companyName: "BetterPrepared",
     companyRating: 5.0, //needs to be average of employee ratings need to figure this out
 
