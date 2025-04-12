@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import Company from "./model/company.js";
 import Employee from "./model/employee.js";
 
-mongoose.connect("mongodb+srv://kevinb71205:<ur85xvDzeixc1CWs>@betterprepared.px7purl.mongodb.net/BetterPreparedData?retryWrites=true&w=majority&appName=BetterPrepared");
+mongoose.connect("mongodb+srv://kevinb71205:ur85xvDzeixc1CWs@betterprepared.px7purl.mongodb.net/BetterPreparedData?retryWrites=true&w=majority&appName=BetterPrepared");
 
 const employeeA = new Employee ({
     companyName: "No name", //On creation needs to be none need to set when added to a company
